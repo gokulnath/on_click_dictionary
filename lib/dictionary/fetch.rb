@@ -1,12 +1,17 @@
 require 'wordnik'
 
-Wordnick.configure do
-	config.api_key = Common.settings[:wordnick_api_key]
-end
 
 class Fetch
+
+  def initialize
+    Wordnik.configure do |config|
+     	config.api_key = Common.settings[:wordnick_api_key]
+    end
+  end
+
   def meaning(word)
-  	Wordnick.word.get_definitions(word)
+    definition = Wordnik.word.get_definitions(word).first # wordnik returans an array of all defnitions
+    definition['text']
   end
 
 end
