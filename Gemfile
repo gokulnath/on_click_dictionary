@@ -7,3 +7,4 @@ end
 gem 'thor'
 gem 'wordnik'
 gem 'clipboard'
+gem 'activesupport'
