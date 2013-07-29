@@ -6,6 +6,7 @@ class Dictionary
 
     loop do
       word = Clipboard.paste 'primary'
+      word.gsub!("\n",'') if word
         unless word && last_word(word)
         last_word(word)
         meaning = find_meaning(word)
