@@ -10,7 +10,7 @@ class Dictionary
         unless word && last_word(word)
         last_word(word)
         meaning = find_meaning(word)
-        puts meaning if meaning
+        notify(word, meaning) if meaning
       end
       sleep 2
     end
@@ -29,6 +29,10 @@ class Dictionary
     return true if @last_word == word
     @last_word = word
     false 
+  end
+
+  def notify(word, meaning)
+    Libnotify.show(:body => word, :summary => meaning, :timeout => 1)
   end
 
 end
