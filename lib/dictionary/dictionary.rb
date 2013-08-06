@@ -6,8 +6,8 @@ class Dictionary
 
     loop do
       word = Clipboard.paste 'primary'
-      word.gsub!("\n",'') if word
-        unless word && last_word(word)
+      format(word) if word
+      unless word && last_word(word)
         last_word(word)
         meaning = find_meaning(word)
         notify(word, meaning) if meaning
@@ -33,6 +33,11 @@ class Dictionary
 
   def notify(word, meaning)
     Libnotify.show(:body => word, :summary => meaning, :timeout => 1)
+  end
+
+  def format(word)
+    word.gsub!("\n",'')
+    word.downcase!
   end
 
 end
