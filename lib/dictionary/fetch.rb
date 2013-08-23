@@ -16,6 +16,8 @@ class Fetch
       puts e.message
     rescue ServerError => e
       puts e.message
+    rescue NoMethodError => e
+      puts e.message
     end
 
     begin
